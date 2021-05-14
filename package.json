@@ -79,6 +79,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
     "start-dev": "nodemon server.js",
     "start-prod": "NODE_ENV=production nodemon server.js",
     "debug": "ndb server.js",
@@ -89,5 +90,8 @@
   "license": "ISC",
   "devDependencies": {
     "ndb": "^1.1.5"
+  },
+  "engines": {
+    "node": "^10"
   }
 }
