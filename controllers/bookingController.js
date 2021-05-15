@@ -17,7 +17,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     success_url: `${req.protocol}://localhost:3000/my-tours`,
     cancel_url: `${req.protocol}://localhost:3000/tour/${tour.slug}`,
     customer_email: req.user.email,
-    client_refrence_id: req.params.tourId,
+    client_reference_id: req.params.tourId,
     line_items: [
       {
         name: `${tour.name} Tour`,
@@ -48,7 +48,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 //   res.redirect(req.originalUrl.split('?')[0]);
 // });
 const createBookingCheckOut = async (session) => {
-  const tour = session.client_refrence_id;
+  const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
   const price = session.line_items[0].amount / 100;
   await Booking.create({ tour, user, price });
