@@ -4,6 +4,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const compression = require('compression');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const helmet = require('helmet');
@@ -22,7 +23,8 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
 app.enable('trust proxy');
-
+app.use(cors());
+app.options('*', cors());
 app.use(mongoSanitize());
 app.use(xss());
 app.use(helmet());
