@@ -16,6 +16,16 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
+
+app.post(
+  '/webhook-checkout',
+  express.raw({
+    type: 'application/json',
+  }),
+  bookingController.webhookCheckout
+);
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.json({ limit: '10kb' }));
@@ -105,7 +115,6 @@ app.use('/api', limiter);
 // });
 
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);

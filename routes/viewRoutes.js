@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get(
   '/',
-  bookingController.createBookingCheckOut,
+  // bookingController.createBookingCheckOut,
   authController.isLoggedIn,
   viewController.getOverView
 );
